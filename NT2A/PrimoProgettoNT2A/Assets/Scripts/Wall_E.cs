@@ -1,8 +1,7 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 
 
 public class Wall_E : MonoBehaviour
@@ -24,6 +23,7 @@ public class Wall_E : MonoBehaviour
         transform.eulerAngles = orientamentoIniziale;
 
         Debug.Log("Hello!");
+
     }
 
     
