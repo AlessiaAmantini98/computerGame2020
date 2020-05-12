@@ -6,9 +6,7 @@ public class BallControll : MonoBehaviour
 {
     // 1 è il default
     public float forza=1;
-    public float forzaLevitazione = 200;
-
-    public float velocitaBumber = 1;
+    public float forzaSalto=3;
 
     public Vector3 posizioneIniziale;
 
@@ -30,7 +28,7 @@ public class BallControll : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S))
         {
-            rigidBodyPallina.AddForce(-Vector3.forward * forza);
+            rigidBodyPallina.AddForce(Vector3.back * forza);
         }
 
         if (Input.GetKey(KeyCode.D))
@@ -40,29 +38,17 @@ public class BallControll : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            rigidBodyPallina.AddForce(-Vector3.right * forza);
+            rigidBodyPallina.AddForce(Vector3.left * forza);
         }
     }
 
-    // viene chiamato al primo contatto con un oggetto solido
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnCollisionStay(Collision collision)
     {
-        Debug.Log("CONTATTO CON:" + collision.gameObject.name );
-
-        if (collision.gameObject.name=="Bumber")
+        if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Contatto con bumber");
-            rigidBodyPallina.velocity = Vector3.up* velocitaBumber;
+            rigidBodyPallina.AddForce(Vector3.up * forzaSalto);
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        Debug.Log("DENTRO L'AREA:" + other.gameObject.name);
-
-        if (other.gameObject.name=="Area (Logica)")
-        {
-            rigidBodyPallina.AddForce(Vector3.up * forzaLevitazione);
-        }
-    }
 }

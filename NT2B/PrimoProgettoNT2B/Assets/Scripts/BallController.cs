@@ -8,10 +8,11 @@ public class BallController : MonoBehaviour
     public Vector3 posizioneIniziale = new Vector3(0, 2, 0);
 
     public float forza;
-    public float forzaLevitazione = 10;
+
     public Rigidbody rbPallina;
 
-    public float velocitaBumper=5;
+
+    public float forzaSalto = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,9 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+
         // se sto premento il tasto W
         if (Input.GetKey(KeyCode.W))
         {
@@ -47,25 +51,16 @@ public class BallController : MonoBehaviour
 
     }
 
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        Debug.Log("CONTATTO CON:" + collision.gameObject.name  );
-
-        if (collision.gameObject.name == "Bumper")
+        //Se premo il tasto Spazio
+        if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Bumper!");
-            rbPallina.velocity = Vector3.up * velocitaBumper;
+            //Allora do una forza verso l'alto
+            rbPallina.AddForce(Vector3.up * forzaSalto);
         }
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        Debug.Log("USCITA DA:" + collision.gameObject.name);
-    }
 
-    private void OnTriggerStay(Collider other)
-    {
-        rbPallina.AddForce(Vector3.up * forzaLevitazione);
-    }
+
 }
