@@ -18,6 +18,7 @@ public class Portale : MonoBehaviour
     {
         // navigazione tra oggetti e componenti
         //this.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.red;
+       
 
         // se qualcuno non è stato appena trasportato
         if (!justTeleported)
