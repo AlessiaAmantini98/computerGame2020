@@ -34,23 +34,23 @@ public class Wall_E : MonoBehaviour
 
         if ( Input.GetKey(KeyCode.W)  )
         {
-            transform.Translate( new Vector3(0, 0 , velocita ) );
+            transform.Translate( new Vector3(0, 0 , velocita  ) * Time.deltaTime  );
         }
        
 
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(new Vector3(0, 0, (0-velocita)  ));
+            transform.Translate(new Vector3(0, 0, (0-velocita) * Time.deltaTime));
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(new Vector3(0, velocitaRotazione, 0));
+            transform.Rotate(new Vector3(0, velocitaRotazione, 0) * Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(new Vector3(0, -velocitaRotazione, 0));
+            transform.Rotate(new Vector3(0, -velocitaRotazione, 0) * Time.deltaTime);
         }
     }
 

@@ -12,6 +12,11 @@ public class BallControll : MonoBehaviour
 
     public Rigidbody rigidBodyPallina;
 
+    public AudioSource rotolamento;
+    public float proporzioneVolumeRotolamento = 0.1f;
+    
+    bool onFloor = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +26,15 @@ public class BallControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // se sono sul pavimento, allora il volume del rotolamento è proporzionale alla velocità
+        if (onFloor)
+        {
+            rotolamento.volume = rigidBodyPallina.velocity.magnitude * proporzioneVolumeRotolamento;
+            rotolamento.pitch = 0.6f + rigidBodyPallina.velocity.magnitude * proporzioneVolumeRotolamento;
+        }
+        // altrimenti il volume è zero
+        else rotolamento.volume = 0;
+
         if (Input.GetKey(KeyCode.W))
         {
             rigidBodyPallina.AddForce(Vector3.forward * forza);
@@ -45,10 +59,17 @@ public class BallControll : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
+        onFloor = true;
+
         if (Input.GetKey(KeyCode.Space))
         {
             rigidBodyPallina.AddForce(Vector3.up * forzaSalto);
         }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        onFloor = false;
     }
 
 }

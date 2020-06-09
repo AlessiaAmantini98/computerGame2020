@@ -6,6 +6,9 @@ public class DoubleTeleport : MonoBehaviour
 {
     public DoubleTeleport otherPortal;
 
+    public AudioSource soundFx;
+    public ParticleSystem effetto;
+
     bool justTeleported=false;
 
     public Vector3 offset = Vector3.up;
@@ -34,6 +37,9 @@ public class DoubleTeleport : MonoBehaviour
         // di non riteletraposrtarlo indietro
         if (!justTeleported)
         {
+            otherPortal.soundFx.Play();
+            otherPortal.effetto.Play();
+
             otherPortal.justTeleported = true; // ignora la prossima entrata
             other.transform.position = otherPortal.transform.position + otherPortal.offset;
 
