@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Portale : MonoBehaviour
 {
-    
-
     public Portale target;
 
     public Vector3 offset=Vector3.up;
@@ -13,6 +11,9 @@ public class Portale : MonoBehaviour
     public bool stop;
 
     bool justTeleported = false;
+
+    public AudioSource suono;
+    public ParticleSystem particle;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,6 +31,10 @@ public class Portale : MonoBehaviour
 
             // porto l'oggetto nella posizione target, definita dall'oggetto
             other.attachedRigidbody.transform.position = target.transform.position + target.offset;
+
+            // suono il teletrasporto
+            target.suono.Play();
+            target.particle.Play();
 
             // se è stato chiesto di spottare l'oggetto
             if (target.stop)

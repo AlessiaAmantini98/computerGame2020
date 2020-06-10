@@ -11,8 +11,12 @@ public class BallController : MonoBehaviour
 
     public Rigidbody rbPallina;
 
-
     public float forzaSalto = 100;
+
+    public AudioSource rumore;
+
+    public float rapportoVelocitaVolume = 0.2f;
+    public float rapportoVelocitaPitch = 0.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +28,8 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
+        rumore.volume = rbPallina.velocity.magnitude * rapportoVelocitaVolume;
+        rumore.pitch = (0.8f+ (rbPallina.velocity.magnitude * rapportoVelocitaPitch));
 
         // se sto premento il tasto W
         if (Input.GetKey(KeyCode.W))
@@ -53,12 +57,19 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
+        rumore.mute = false;
+
         //Se premo il tasto Spazio
         if (Input.GetKey(KeyCode.Space))
         {
             //Allora do una forza verso l'alto
             rbPallina.AddForce(Vector3.up * forzaSalto);
         }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        rumore.mute = true;
     }
 
 

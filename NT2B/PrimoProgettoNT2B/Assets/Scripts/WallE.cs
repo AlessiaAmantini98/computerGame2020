@@ -27,28 +27,28 @@ public class WallE : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 //Sto andando avanti con doppia velocità
-                transform.Translate(new Vector3(0, 0, velocita * bonusSprint));
+                transform.Translate(new Vector3(0, 0, velocita * bonusSprint  * Time.deltaTime));
             }
             else
             {
                 //Sto andando avanti
-                transform.Translate(new Vector3(0, 0, velocita));
+                transform.Translate(new Vector3(0, 0, velocita * Time.deltaTime));
             }
         }
 
         if (Input.GetKey("s"))
         {
-            transform.Translate(new Vector3(0, 0, 0-velocita));
+            transform.Translate(new Vector3(0, 0, 0-velocita) * Time.deltaTime);
         }
 
         if (Input.GetKey("a"))
         {
-            transform.Rotate(new Vector3(0, -velocitaRotazione, 0));
+            transform.Rotate(new Vector3(0, -velocitaRotazione, 0) * Time.deltaTime);
         }
 
         if (Input.GetKey("d"))
         {
-            transform.Rotate(new Vector3(0, velocitaRotazione, 0));
+            transform.Rotate(new Vector3(0, velocitaRotazione, 0) * Time.deltaTime);
         }
 
     }
