@@ -49,6 +49,7 @@ public class WallECharacterController : MonoBehaviour
 
         //Metodo alternativo con condizioni diverse
         animatore.SetFloat("avanti", avanti);
+        
     }
 
     // Viene chiamato solo dai rigidbody
@@ -60,13 +61,13 @@ public class WallECharacterController : MonoBehaviour
     // può essere chiamato dal Character Controller e dal Rigidbody
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger in " + other.gameObject.name);
+        //Debug.Log("Trigger in " + other.gameObject.name);
     }
 
     // Chiamato solo dal Character controller
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Debug.Log("Collision! con " + hit.gameObject.name);
+        //Debug.Log("Collision! con " + hit.gameObject.name);
     }
 
 }
